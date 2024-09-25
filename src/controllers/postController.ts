@@ -1,4 +1,6 @@
 import exp, { Request, Response, Router } from 'express'
+import PostService from '../services/postService'
+import NewPostDTO from '../DTO/newPostDto'
 
 const router:Router = exp.Router()
 
@@ -25,14 +27,14 @@ router.get('/', async (
 
 // protected route
 router.post('/', async (
-    req:Request,
+    req:Request<any, any, NewPostDTO>,
     res:Response
 ):Promise<void> => {
     try {
-        
+        await PostService.createNewPost(req.body)
         res.status(200).json({
             err: false,
-            message: 'I was way too lazy to change the default message',
+            message: 'Post saved successfully',
             data: undefined
         })
     } catch (err) {

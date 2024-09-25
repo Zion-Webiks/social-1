@@ -2,7 +2,7 @@ import fs from 'fs/promises'
 
 export const getFileData = async <T> (resource:string):Promise<T[] | void> =>{
     try {
-        const strData:string = await fs.readFile(`${__dirname}/data/${resource}.json`, 'utf-8')
+        const strData:string = await fs.readFile(`${__dirname}/../../data/${resource}.json`, 'utf-8')
         const parsedData:T[] = JSON.parse(strData)
         return parsedData
     } catch (err) {
@@ -13,7 +13,7 @@ export const getFileData = async <T> (resource:string):Promise<T[] | void> =>{
 export const saveFileData = async <T> (resource:string, data:T[]):Promise<boolean> =>{
   try {
         const stringifiedData:string = JSON.stringify(data)
-        await fs.writeFile(`${__dirname}/data/${resource}.json`,stringifiedData, {
+        await fs.writeFile(`${__dirname}/../../data/${resource}.json`,stringifiedData, {
             encoding:'utf-8'
         })
         return true
