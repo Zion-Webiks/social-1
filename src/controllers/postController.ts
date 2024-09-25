@@ -5,7 +5,7 @@ import NewPostDTO from '../DTO/newPostDto'
 const router:Router = exp.Router()
 
 
-router.get('/', async (
+router.get('/',  async (
     req:Request,
     res:Response
 ):Promise<void> => {
