@@ -23,6 +23,7 @@ router.get('/', async (
     }
 })
 
+// protected route
 router.post('/', async (
     req:Request,
     res:Response
@@ -84,6 +85,7 @@ router.get('/:id', async (
     }
 })
 
+// protected route
 router.patch('/like/:id', async (
     req:Request,
     res:Response

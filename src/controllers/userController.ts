@@ -23,6 +23,7 @@ router.post('/register', async (
     }
 })
 
+// protected route
 router.post('/follow', async (
     req:Request,
     res:Response
@@ -64,6 +65,7 @@ router.get('/search', async (
     }
 })
 
+// protected route
 // ?type=MINE|ELSE
 router.get('/profile', async (
     req:Request,
@@ -85,6 +87,7 @@ router.get('/profile', async (
     }
 })
 
+// protected route
 // ?type=MINE|ELSE
 router.get('/followers', async (
     req:Request,
@@ -106,6 +109,7 @@ router.get('/followers', async (
     }
 })
 
+// protected route
 // ?type=MINE|ELSE
 router.get('/following', async (
     req:Request,
