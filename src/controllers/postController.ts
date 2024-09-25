@@ -2,6 +2,7 @@ import exp, { Request, Response, Router } from 'express'
 import PostService from '../services/postService'
 import NewPostDTO from '../DTO/newPostDto'
 import { getFileData } from '../config/fileDataLayer'
+import Post from '../models/post'
 
 const router:Router = exp.Router()
 
@@ -11,7 +12,7 @@ router.get('/',  async (
     res:Response
 ):Promise<void> => {
     try {
-        const posts = await getFileData('posts')
+        const posts = await getFileData<Post>('posts')
         res.status(200).json({
             err: false,
             message: "Here's all your posts",
@@ -73,11 +74,12 @@ router.get('/:id', async (
     res:Response
 ):Promise<void> => {
     try {
-        
+        const posts = await getFileData<Post>('posts')
+        const post = posts!.find(p => p.id)
         res.status(200).json({
             err: false,
-            message: 'I was way too lazy to change the default message',
-            data: undefined
+            message: "Here's your post",
+            data: post
         })
     } catch (err) {
         res.status(400).json({
