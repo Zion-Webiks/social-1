@@ -11,7 +11,7 @@ export default class PostService {
             authorId, content, hashtags, ref
         )
       
-        let posts: Post[] = await getFileData<Post>('users') as Post[]
+        let posts: Post[] = await getFileData<Post>('posts') as Post[]
         if(!posts) posts = []
        
         posts.push(post)
