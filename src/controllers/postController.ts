@@ -3,11 +3,13 @@ import PostService from '../services/postService'
 import NewPostDTO from '../DTO/newPostDto'
 import { getFileData } from '../config/fileDataLayer'
 import Post from '../models/post'
+import verifyUser from '../middlewares/verifyUser'
+import RequestWithUser from '../types/requestWithUser'
 
 const router:Router = exp.Router()
 
 
-router.get('/',  async (
+router.get('/', async (
     req:Request,
     res:Response
 ):Promise<void> => {
@@ -28,7 +30,7 @@ router.get('/',  async (
 })
 
 // protected route
-router.post('/', async (
+router.post('/', verifyUser, async (
     req:Request<any, any, NewPostDTO>,
     res:Response
 ):Promise<void> => {
@@ -93,7 +95,7 @@ router.get('/:id', async (
 })
 
 // protected route
-router.patch('/like', async (
+router.patch('/like', verifyUser, async (
     req:Request<any, any, {postId:string, userId:string}>,
     res:Response
 ):Promise<void> => {

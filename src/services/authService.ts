@@ -2,6 +2,7 @@ import User from "../models/user";
 import { getFileData, saveFileData } from "../config/fileDataLayer";
 import LoginDTO from "../DTO/loginDto";
 import jwt from "jsonwebtoken";
+import TokenPayloadDTO from "../DTO/tokenPayloadDTO";
 
 
 export default class AuthService {
@@ -18,7 +19,7 @@ export default class AuthService {
         
         // HASH THE F PASSWORDDDDDD
         if(user.password != password) throw new Error("403: Wrong passwod")
-        const payload = {
+        const payload:TokenPayloadDTO = {
             username,
             id: user.id,
             avatarUrl: user.avatarUrl,

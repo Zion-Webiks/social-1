@@ -10,12 +10,12 @@ router.post('/login', async (
 ):Promise<void> => {
     try {
         const token = await AuthService.login(req.body)
-        res.status(200).json({
+        res.cookie("token",token).status(200).json({
             err: false,
             message: "here's your token bruh",
             data: token
         })
-    } catch (err ) {
+    } catch (err) {
         console.log(err as Error)
         const [status, msg] = (err as Error).message.split(":")
         res.status(Number(status)).json({
