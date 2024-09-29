@@ -15,11 +15,12 @@ router.post('/login', async (
             message: "here's your token bruh",
             data: token
         })
-    } catch (err) {
-        console.log(err)
-        res.status(400).json({
+    } catch (err ) {
+        console.log(err as Error)
+        const [status, msg] = (err as Error).message.split(":")
+        res.status(Number(status)).json({
             err: true,
-            message: 'Sorry no token today, try again tomorrow',
+            message: msg || 'Sorry no token today, try again tomorrow',
             data: null
         })
     }
