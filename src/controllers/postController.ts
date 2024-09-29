@@ -104,7 +104,7 @@ router.patch('/like', async (
         let opperationType:string
         if (post.likedBy.includes(userId)) {
             post.likedBy = post?.likedBy.filter(u => u != userId)
-            opperationType = 'dislike'
+            opperationType = 'unlike'
         } else {
             post?.likedBy.push(userId)
             opperationType = 'like'
